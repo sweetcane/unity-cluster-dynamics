@@ -1,17 +1,9 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Tool
 {
-    public interface ITool
-    {
-        string ToolName { get; }
-        string GroupName { get; }
-
-        bool DrawGUI();
-        void Execute();
-    }
-
-    public abstract class ToolAsset : ScriptableObject, ITool
+    public abstract class ToolAsset : ScriptableObject
     {
         [SerializeField] private string toolName;
         [SerializeField] private string groupName;
@@ -20,6 +12,6 @@ namespace Tool
         public string GroupName => groupName;
         
         public virtual bool DrawGUI() => false;
-        public abstract void Execute();
+        public abstract IEnumerator Execute();
     }
 }
